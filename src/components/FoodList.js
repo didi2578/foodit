@@ -6,8 +6,13 @@ const formatDate = (value) => {
   return `${date.getFullYear()}. ${date.getMonth() + 1}. ${date.getDate()}`
 }
 
-const FoodItem = ({ item }) => {
+const FoodItem = ({ item, onDelete }) => {
   const { imgUrl, title, calorie, content, createdAt } = item
+
+  const handleDeleteClick = () => {
+    console.log(item.id)
+    onDelete(item.id)
+  }
 
   return (
     <FoodListItem>
@@ -16,16 +21,17 @@ const FoodItem = ({ item }) => {
       <div>{calorie}</div>
       <div>{content}</div>
       <div>{formatDate(createdAt)}</div>
+      <button onClick={handleDeleteClick}>삭제</button>
     </FoodListItem>
   )
 }
 
-const FoodList = ({ items }) => {
+const FoodList = ({ items, onDelete }) => {
   return (
     <FoodListUl>
       {items.map((item) => (
         <li>
-          <FoodItem item={item} />
+          <FoodItem item={item} onDelete={onDelete} />
         </li>
       ))}
     </FoodListUl>
