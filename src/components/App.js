@@ -11,9 +11,8 @@ const App = () => {
   const calorieClick = () => setOrder('calorie')
 
   const handleDelete = (id) => {
-    console.log('app', id)
     const nextItems = items.filter((items) => items.id !== id)
-    console.log('next', nextItems)
+
     setItems(nextItems)
   }
 

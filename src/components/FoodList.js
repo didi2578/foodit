@@ -10,7 +10,6 @@ const FoodItem = ({ item, onDelete }) => {
   const { imgUrl, title, calorie, content, createdAt } = item
 
   const handleDeleteClick = () => {
-    console.log(item.id)
     onDelete(item.id)
   }
 
