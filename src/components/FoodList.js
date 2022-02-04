@@ -29,7 +29,7 @@ const FoodList = ({ items, onDelete }) => {
   return (
     <FoodListUl>
       {items.map((item) => (
-        <li>
+        <li key={item.id}>
           <FoodItem item={item} onDelete={onDelete} />
         </li>
       ))}
