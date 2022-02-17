@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import FoodList from './FoodList'
+import FoodForm from './FoodForm'
 import { getFoods } from '../api'
 
 const App = () => {
@@ -54,6 +55,7 @@ const App = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault()
     setSearch(e.target['search'].value)
+    console.log(e.target['search'].value)
   }
 
   useEffect(() => {
@@ -64,6 +66,7 @@ const App = () => {
       <div className="App">
         <button onClick={newestClick}>최신순</button>
         <button onClick={calorieClick}>칼로리</button>
+        <FoodForm />
         <form onSubmit={handleSearchSubmit}>
           <input name="search" />
           <button type="submit">검색</button>
