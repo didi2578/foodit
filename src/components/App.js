@@ -58,6 +58,10 @@ const App = () => {
     console.log(e.target['search'].value)
   }
 
+  const handleSubmitSuccess = (newItem) => {
+    setItems((prevItems) => [newItem, ...prevItems])
+  }
+
   useEffect(() => {
     handleLoad({ order, search })
   }, [order, search])
@@ -66,7 +70,7 @@ const App = () => {
       <div className="App">
         <button onClick={newestClick}>최신순</button>
         <button onClick={calorieClick}>칼로리</button>
-        <FoodForm />
+        <FoodForm onSubmitSuccess={handleSubmitSuccess} />
         <form onSubmit={handleSearchSubmit}>
           <input name="search" />
           <button type="submit">검색</button>
