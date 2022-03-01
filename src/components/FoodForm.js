@@ -1,4 +1,3 @@
-import { createFood } from 'api'
 import React, { useState } from 'react'
 import FileInput from './FileInput'
 
@@ -12,13 +11,20 @@ const sanitize = (type, value) => {
   }
 }
 
-const INITIAL_VALUE = {
+const INITIAL_VALUES = {
   title: '',
   calorie: 0,
   content: '',
 }
-const FoodForm = ({ onSubmitSuccess }) => {
-  const [values, setValues] = useState(INITIAL_VALUE)
+const FoodForm = ({
+  initialValues = INITIAL_VALUES,
+  initialPreview,
+  onSubmit,
+  onSubmitSuccess,
+  onCancel,
+}) => {
+  const [values, setValues] = useState(initialValues)
+  console.log(initialPreview)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -28,9 +34,9 @@ const FoodForm = ({ onSubmitSuccess }) => {
     formData.append('title', values.title)
     formData.append('calorie', values.calorie)
     formData.append('content', values.content)
-    const { food } = await createFood(formData)
+    const { food } = await onSubmit(formData)
 
-    setValues(INITIAL_VALUE)
+    setValues(INITIAL_VALUES)
     onSubmitSuccess(food)
   }
 
@@ -52,9 +58,10 @@ const FoodForm = ({ onSubmitSuccess }) => {
         <FileInput
           name="imgFile"
           value={values.imgFile}
+          initialPreview={initialPreview}
           onChange={handleChange}
         />
-        <input value={values.title} name="title" onChange={handleChange} />
+        <input value={values.title} name="title" onChange={handleInputChange} />
         <input
           value={values.calorie}
           name="calorie"
@@ -67,6 +74,7 @@ const FoodForm = ({ onSubmitSuccess }) => {
           onChange={handleInputChange}
         />
         <button type="submit">확인</button>
+        {onCancel && <button onClick={onCancel}>취소</button>}
       </form>
     </div>
   )

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-const FileInput = ({ name, value, onChange }) => {
-  const [preview, setPreview] = useState()
+const FileInput = ({ name, value, onChange, initialPreview }) => {
+  const [preview, setPreview] = useState(initialPreview)
   const inputRef = useRef()
 
   const handleChange = (e) => {
@@ -32,9 +32,7 @@ const FileInput = ({ name, value, onChange }) => {
 
   return (
     <>
-      {value && (
-        <img src={preview} alt="이미지 미리보기" width="200" height="200" />
-      )}
+      <img src={preview} alt="이미지 미리보기" width="200" height="200" />
       <input
         type="file"
         accept="image/png, image/jpeg"

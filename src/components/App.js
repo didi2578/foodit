@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import FoodList from './FoodList'
 import FoodForm from './FoodForm'
-import { getFoods } from '../api'
+import { getFoods, createFood, updateFood, deleteFood } from '../api'
 
 const App = () => {
   const [order, setOrder] = useState('createdAt')
@@ -15,10 +15,11 @@ const App = () => {
   const newestClick = () => setOrder('createdAt')
   const calorieClick = () => setOrder('calorie')
 
-  const handleDelete = (id) => {
-    const nextItems = items.filter((items) => items.id !== id)
-
-    setItems(nextItems)
+  const handleDelete = async (id) => {
+    const result = await deleteFood(id)
+    alert('삭제하시겠습니까?')
+    if (!result) return
+    setItems((prevItems) => prevItems.filter((items) => items.id !== id))
   }
   const handleLoad = async (options) => {
     let result
@@ -58,25 +59,43 @@ const App = () => {
     console.log(e.target['search'].value)
   }
 
-  const handleSubmitSuccess = (newItem) => {
+  const handleCreateSuccess = (newItem) => {
     setItems((prevItems) => [newItem, ...prevItems])
   }
 
   useEffect(() => {
     handleLoad({ order, search })
   }, [order, search])
+
+  const handleUpdateSuccess = (newItem) => {
+    setItems((prevItems) => {
+      const splitIdx = prevItems.findIndex((item) => item.id === newItem.id)
+      return [
+        ...prevItems.slice(0, splitIdx),
+        newItem,
+        ...prevItems.slice(splitIdx + 1),
+      ]
+    })
+  }
+
   return (
     <>
       <div className="App">
         <button onClick={newestClick}>최신순</button>
         <button onClick={calorieClick}>칼로리</button>
-        <FoodForm onSubmitSuccess={handleSubmitSuccess} />
+        <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess} />
+
         <form onSubmit={handleSearchSubmit}>
           <input name="search" />
           <button type="submit">검색</button>
         </form>
       </div>
-      <FoodList items={sortOrder} onDelete={handleDelete} />
+      <FoodList
+        items={sortOrder}
+        onDelete={handleDelete}
+        onUpdate={updateFood}
+        onUpdateSuccess={handleUpdateSuccess}
+      />
       {cursor && (
         <button disabled={isLoading} onClick={handleLoadMore}>
           더보기
