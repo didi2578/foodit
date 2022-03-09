@@ -1,3 +1,4 @@
+import useTranslate from 'hooks/useTranslate'
 import React, { useState } from 'react'
 import FileInput from './FileInput'
 
@@ -23,8 +24,8 @@ const FoodForm = ({
   onSubmitSuccess,
   onCancel,
 }) => {
+  const t = useTranslate()
   const [values, setValues] = useState(initialValues)
-  console.log(initialPreview)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -73,8 +74,8 @@ const FoodForm = ({
           name="content"
           onChange={handleInputChange}
         />
-        <button type="submit">확인</button>
-        {onCancel && <button onClick={onCancel}>취소</button>}
+        <button type="submit">{t('confirm button')}</button>
+        {onCancel && <button onClick={onCancel}>{t('cancel button')}</button>}
       </form>
     </div>
   )

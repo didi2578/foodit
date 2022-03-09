@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import FoodList from './FoodList'
 import FoodForm from './FoodForm'
+import LocaleSelect from './LocaleSelect'
 import { getFoods, createFood, updateFood, deleteFood } from '../api'
+import { LocaleProvider } from '../context/LocaleContext'
 
 const App = () => {
   const [order, setOrder] = useState('createdAt')
@@ -79,30 +81,35 @@ const App = () => {
   }
 
   return (
-    <>
-      <div className="App">
-        <button onClick={newestClick}>최신순</button>
-        <button onClick={calorieClick}>칼로리</button>
-        <FoodForm onSubmit={createFood} onSubmitSuccess={handleCreateSuccess} />
-
-        <form onSubmit={handleSearchSubmit}>
-          <input name="search" />
-          <button type="submit">검색</button>
-        </form>
-      </div>
-      <FoodList
-        items={sortOrder}
-        onDelete={handleDelete}
-        onUpdate={updateFood}
-        onUpdateSuccess={handleUpdateSuccess}
-      />
-      {cursor && (
-        <button disabled={isLoading} onClick={handleLoadMore}>
-          더보기
-        </button>
-      )}
-      {loadingError?.message && <p>{loadingError.message}</p>}
-    </>
+    <LocaleProvider defaultValue="ko">
+      <>
+        <LocaleSelect />
+        <div className="App">
+          <button onClick={newestClick}>최신순</button>
+          <button onClick={calorieClick}>칼로리</button>
+          <FoodForm
+            onSubmit={createFood}
+            onSubmitSuccess={handleCreateSuccess}
+          />
+          <form onSubmit={handleSearchSubmit}>
+            <input name="search" />
+            <button type="submit">검색</button>
+          </form>
+        </div>
+        <FoodList
+          items={sortOrder}
+          onDelete={handleDelete}
+          onUpdate={updateFood}
+          onUpdateSuccess={handleUpdateSuccess}
+        />
+        {cursor && (
+          <button disabled={isLoading} onClick={handleLoadMore}>
+            더보기
+          </button>
+        )}
+        {loadingError?.message && <p>{loadingError.message}</p>}
+      </>
+    </LocaleProvider>
   )
 }
 

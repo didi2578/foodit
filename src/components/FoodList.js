@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import FoodForm from './FoodForm'
+import useTranslate from '../hooks/useTranslate'
 
 const formatDate = (value) => {
   const date = new Date(value)
@@ -8,6 +9,7 @@ const formatDate = (value) => {
 }
 
 const FoodItem = ({ item, onDelete, onEdit }) => {
+  const t = useTranslate()
   const { imgUrl, title, calorie, content, createdAt } = item
 
   const handleDeleteClick = () => {
@@ -23,9 +25,10 @@ const FoodItem = ({ item, onDelete, onEdit }) => {
       <div>{title}</div>
       <div>{calorie}</div>
       <div>{content}</div>
+
       <div>{formatDate(createdAt)}</div>
-      <button onClick={handleEditClick}>수정</button>
-      <button onClick={handleDeleteClick}>삭제</button>
+      <button onClick={handleEditClick}>{t('edit button')}</button>
+      <button onClick={handleDeleteClick}>{t('delete button')}</button>
     </FoodListItem>
   )
 }
