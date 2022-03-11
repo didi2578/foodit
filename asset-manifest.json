@@ -1,0 +1,11 @@
+{
+  "files": {
+    "main.js": "/foodit/static/js/main.fd9ee1f7.js",
+    "static/media/background.png": "/foodit/static/media/background.090337999f91f82e3453.png",
+    "index.html": "/foodit/index.html",
+    "main.fd9ee1f7.js.map": "/foodit/static/js/main.fd9ee1f7.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.fd9ee1f7.js"
+  ]
+}
