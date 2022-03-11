@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import FoodForm from './FoodForm'
 import useTranslate from '../hooks/useTranslate'
 import placeholderImg from '../assets/preview-placeholder.png'
