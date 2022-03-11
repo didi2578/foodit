@@ -1,10 +1,12 @@
-import React from 'react'
+import { LocaleProvider } from 'context/LocaleContext'
 import ReactDOM from 'react-dom'
 import App from './components/App'
+import GlobalStyles from './styles/GlobalStyles'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <LocaleProvider defaultValue="ko">
+    <GlobalStyles />
     <App />
-  </React.StrictMode>,
+  </LocaleProvider>,
   document.getElementById('root')
 )
