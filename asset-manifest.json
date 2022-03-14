@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.js": "/foodit/static/js/main.9895203b.js",
+    "main.js": "/foodit/static/js/main.a460108b.js",
     "static/media/background.png": "/foodit/static/media/background.090337999f91f82e3453.png",
     "index.html": "/foodit/index.html",
-    "main.9895203b.js.map": "/foodit/static/js/main.9895203b.js.map"
+    "main.a460108b.js.map": "/foodit/static/js/main.a460108b.js.map"
   },
   "entrypoints": [
-    "static/js/main.9895203b.js"
+    "static/js/main.a460108b.js"
   ]
 }
