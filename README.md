@@ -1,6 +1,7 @@
 # 🍽[React] 음식 칼로리 저장 웹페이지
-![foodit1](https://user-images.githubusercontent.com/88611957/158110289-2185ceb4-705f-41d1-bdab-b8ba1af5974d.png)
-![foodit2](https://user-images.githubusercontent.com/88611957/158110300-2ff54663-5b21-462f-aa39-dd8b43a606d4.png)
+
+![foodit](https://user-images.githubusercontent.com/88611957/158111256-37edb54e-b356-48f6-b35c-e1adbfd6bdb1.png)
+
 
 [🍔Foodit 바로가기](https://didi2578.github.io/foodit)
 
