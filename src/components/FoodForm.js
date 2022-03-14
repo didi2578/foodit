@@ -100,7 +100,6 @@ const FoodForm = ({
 const Form = styled.form`
   display: flex;
   flex: 1 1;
-  /* max-height: 150px; */
   margin: 60px 0 90px;
   padding: 22px;
   border-radius: 15px;
