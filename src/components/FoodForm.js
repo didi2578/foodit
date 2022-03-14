@@ -69,6 +69,7 @@ const FoodForm = ({
             value={values.title}
             name="title"
             onChange={handleInputChange}
+            placeholder="이름을 작성해 주세요."
           />
           <input
             className="FoodForm-calorie"
