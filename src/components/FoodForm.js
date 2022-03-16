@@ -63,16 +63,15 @@ const FoodForm = ({
         onChange={handleChange}
       />
       <FormRow>
-        <div className="FoodForm-title-calorie">
-          <input
-            className="FoodForm-title"
+        <FormLowContainer>
+          <Input
+            $title
             value={values.title}
             name="title"
             onChange={handleInputChange}
             placeholder="이름을 작성해 주세요."
           />
-          <input
-            className="FoodForm-calorie"
+          <Input
             value={values.calorie}
             name="calorie"
             type="number"
@@ -86,7 +85,7 @@ const FoodForm = ({
           <Button type="submit" $submit>
             {t('confirm button')}
           </Button>
-        </div>
+        </FormLowContainer>
         <FormContent
           name="content"
           value={values.content}
@@ -116,22 +115,17 @@ const FormRow = styled.div`
   flex: 1 1;
   flex-direction: column;
   margin-left: 20px;
-
-  .FoodForm-title-calorie {
-    flex: none;
-    margin-bottom: 14px;
-    display: flex;
-  }
-  .FoodForm-title {
-    flex: 2 1;
-    margin-right: 15px;
-  }
-
-  .FoodForm-calorie {
-    flex: 1 1;
-    margin-right: 15px;
-  }
 `
+const FormLowContainer = styled.div`
+  flex: none;
+  margin-bottom: 14px;
+  display: flex;
+`
+const Input = styled.input`
+  margin-right: 15px;
+  flex: ${(props) => (props.$title ? `2 1` : `1 1`)};
+`
+
 const Button = styled.button`
   padding: 13px 20px;
   border: none;
@@ -141,22 +135,20 @@ const Button = styled.button`
   cursor: pointer;
 
   ${(props) =>
-    props.$submit
-      ? css`
-          flex: none;
-          color: #fff;
-          background-color: #2c9631;
-        `
-      : ''}
+    props.$submit &&
+    css`
+      flex: none;
+      color: #fff;
+      background-color: #2c9631;
+    `}
 
   ${(props) =>
-    props.$cancel
-      ? css`
-          margin-right: 15px;
-          color: #000;
-          background-color: transparent;
-        `
-      : ''}
+    props.$cancel &&
+    css`
+      margin-right: 15px;
+      color: #000;
+      background-color: transparent;
+    `}
 `
 
 export default FoodForm

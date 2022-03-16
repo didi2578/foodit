@@ -34,9 +34,9 @@ const FileInput = ({ name, value, onChange, initialPreview }) => {
   }, [value, initialPreview])
 
   return (
-    <FileInputDiv>
+    <FileInputDiv preview={preview}>
       <img
-        className={`FileInput-preview ${preview ? 'selected' : ''}`}
+        preview={preview}
         src={preview || placeholderImg}
         alt="이미지 미리보기"
       />
@@ -65,16 +65,13 @@ const FileInputDiv = styled.div`
   border: 1px solid #dae7e3;
   flex: none;
 
-  .FileInput-preview {
+  img {
     display: block;
     width: 100%;
     height: 100%;
     object-position: center;
     object-fit: cover;
-  }
-
-  .FileInput-preview.selected {
-    opacity: 0.48;
+    opacity: ${(props) => props.preview && '0.48'};
   }
 `
 const InputHidden = styled.input`

@@ -1,14 +1,9 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const AppSortButton = ({ children, selected, onClick }) => {
   return (
-    <Button
-      select={selected}
-      disabled={selected}
-      className={`${selected ? 'selected' : ''}`}
-      onClick={onClick}
-    >
+    <Button select={selected} disabled={selected} onClick={onClick}>
       {children}
     </Button>
   )
@@ -20,25 +15,27 @@ const Button = styled.button`
   background-color: transparent;
   padding: 10px;
   cursor: pointer;
-  position: ${(props) => (props.select ? 'relative' : '')};
-  font-weight: ${(props) => (props.select ? 'bold' : '')};
-
   :not(:last-child) {
     margin-right: 20px;
   }
-
   :disabled {
     cursor: default;
   }
-
-  .selected::before {
-    content: '';
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    background-color: #2c9631;
-    top: 16px;
-    left: 0px;
-  }
+  ${(props) =>
+    props.select &&
+    css`
+      position: ${(props) => props.select && 'relative'};
+      font-weight: ${(props) => props.select && 'bold'};
+      ::before {
+        content: '';
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background-color: #2c9631;
+        top: 16px;
+        left: 0px;
+        border-radius: 50%;
+      }
+    `}
 `
 export default AppSortButton
