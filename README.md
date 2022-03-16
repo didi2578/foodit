@@ -1,9 +1,8 @@
 # 🍽[React] 음식 칼로리 저장 웹페이지
 
+### [🍔Foodit 바로가기](https://didi2578.github.io/foodit)
+
 ![foodit](https://user-images.githubusercontent.com/88611957/158111256-37edb54e-b356-48f6-b35c-e1adbfd6bdb1.png)
-
-
-[🍔Foodit 바로가기](https://didi2578.github.io/foodit)
 
 
 ## 📃구현기능 [기본 CRUD 구현]
